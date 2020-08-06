@@ -1,6 +1,8 @@
-# E-Com Plus Application Starter
+# App Notificações Inteligentes
 
-[![Deploy](https://github.com/ecomplus/application-starter/workflows/Deploy/badge.svg)](https://github.com/ecomplus/application-starter/actions?workflow=Deploy) [![Call refresh tokens](https://github.com/ecomplus/application-starter/workflows/Call%20refresh%20tokens/badge.svg)](https://github.com/ecomplus/application-starter/actions?workflow=Call+refresh+tokens) [![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deploy](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/workflows/Deploy/badge.svg)](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/actions?workflow=Deploy) [![Call refresh tokens](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/workflows/Call%20refresh%20tokens/badge.svg)](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/actions?workflow=Call+refresh+tokens)
+
+# E-Com Plus Application Starter
 
 :dog: Boilerplate for E-Com Plus apps with [Firebase](https://firebase.google.com/) Cloud Functions and GitHub Actions.
 
