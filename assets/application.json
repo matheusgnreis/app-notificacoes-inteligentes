@@ -1,7 +1,7 @@
 {
-  "app_id": 9000,
-  "title": "My Awesome E-Com Plus App",
-  "slug": "my-awesome-ecom-plus-app",
+  "app_id": 105174,
+  "title": "Notificações Inteligentes",
+  "slug": "notificacoes-inteligentes",
   "type": "external",
   "state": "active",
   "authentication": true,
@@ -17,7 +17,9 @@
     "brands": [],
     "categories": [],
     "customers": [],
-    "orders": [],
+    "orders": [
+      "GET"
+    ],
     "carts": [],
     "orders/fulfillments": [],
     "orders/payments_history": [],
@@ -26,6 +28,6 @@
     "products/price": [],
     "products/variations/price": []
   },
-  "auth_callback_uri": "https://us-central1-ecom-app-boilerplate.cloudfunctions.net/app/ecom/auth-callback",
+  "auth_callback_uri": "https://us-central1-ecom-notificacoes-inteligentes.cloudfunctions.net/app/ecom/auth-callback",
   "version": "1.0.0"
 }
