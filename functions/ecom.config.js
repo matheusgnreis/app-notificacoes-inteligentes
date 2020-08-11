@@ -135,6 +135,19 @@ const app = {
      * You can also set any other valid resource/subresource combination.
      * Ref.: https://developers.e-com.plus/docs/api/#/store/
      */
+  },
+
+  admin_settings: {
+    ni_webhook_uri: {
+      schema: {
+        type: 'string',
+        maxLength: 255,
+        format: 'uri',
+        title: 'URL de notificações',
+        description: 'Endpoint para webhooks da sua conta Notificações Inteligentes'
+      },
+      hide: true
+    }
   }
 }
 
