@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 // read configured E-Com Plus app data
 const getAppData = require('./../../lib/store-api/get-app-data')
 
@@ -31,6 +33,30 @@ exports.post = ({ appSdk }, req, res) => {
       }
 
       /* DO YOUR CUSTOM STUFF HERE */
+      if (trigger.resource === 'orders' && trigger.action !== 'delete') {
+        const orderId = trigger.resource_id
+        if (orderId) {
+          const url = appData.ni_webhook_uri
+          console.log(`Trigger for Store #${storeId} ${orderId} => ${url}`)
+          if (url) {
+            console.log('> Sending order notification')
+            appSdk.apiRequest(storeId, `orders/${orderId}.json`)
+              .then(({ response }) => {
+                return axios({
+                  method: 'post',
+                  url,
+                  data: {
+                    storeId,
+                    trigger,
+                    order: response.data
+                  }
+                })
+              })
+              .then(({ status }) => console.log(`> ${status}`))
+              .catch(console.error)
+          }
+        }
+      }
 
       // all done
       res.send(ECHO_SUCCESS)
