@@ -28,6 +28,18 @@
     "products/price": [],
     "products/variations/price": []
   },
+  "admin_settings": {
+    "ni_webhook_uri": {
+      "schema": {
+        "type": "string",
+        "maxLength": 255,
+        "format": "uri",
+        "title": "URL de notificações",
+        "description": "Endpoint para webhooks da sua conta Notificações Inteligentes"
+      },
+      "hide": true
+    }
+  },
   "auth_callback_uri": "https://us-central1-ecom-notificacoes-inteligentes.cloudfunctions.net/app/ecom/auth-callback",
   "version": "1.0.0"
 }
