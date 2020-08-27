@@ -33,14 +33,15 @@ exports.post = ({ appSdk }, req, res) => {
       }
 
       /* DO YOUR CUSTOM STUFF HERE */
-      if (trigger.resource === 'orders' && trigger.action !== 'delete') {
-        const orderId = trigger.resource_id
-        if (orderId) {
+      const { resource } = trigger
+      if ((resource === 'orders' || resource === 'carts') && trigger.action !== 'delete') {
+        const resourceId = trigger.resource_id
+        if (resourceId) {
           const url = appData.ni_webhook_uri
-          console.log(`Trigger for Store #${storeId} ${orderId} => ${url}`)
+          console.log(`Trigger for Store #${storeId} ${resourceId} => ${url}`)
           if (url) {
-            console.log('> Sending order notification')
-            appSdk.apiRequest(storeId, `orders/${orderId}.json`)
+            console.log(`> Sending ${resource} notification`)
+            appSdk.apiRequest(storeId, `${resource}/${resourceId}.json`)
               .then(({ response }) => {
                 return axios({
                   method: 'post',
@@ -48,7 +49,7 @@ exports.post = ({ appSdk }, req, res) => {
                   data: {
                     storeId,
                     trigger,
-                    order: response.data
+                    [resource.slice(0, -1)]: response.data
                   }
                 })
               })
