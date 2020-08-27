@@ -40,16 +40,25 @@ exports.post = ({ appSdk }, req, res) => {
           const url = appData.ni_webhook_uri
           console.log(`Trigger for Store #${storeId} ${resourceId} => ${url}`)
           if (url) {
-            console.log(`> Sending ${resource} notification`)
             appSdk.apiRequest(storeId, `${resource}/${resourceId}.json`)
-              .then(({ response }) => {
+              .then(async ({ response }) => {
+                let customer
+                if (resource === 'carts') {
+                  const { customers } = response.data
+                  if (customers && customers[0]) {
+                    const { response } = await appSdk.apiRequest(storeId, `customers/${customers[0]}.json`)
+                    customer = response.data
+                  }
+                }
+                console.log(`> Sending ${resource} notification`)
                 return axios({
                   method: 'post',
                   url,
                   data: {
                     storeId,
                     trigger,
-                    [resource.slice(0, -1)]: response.data
+                    [resource.slice(0, -1)]: response.data,
+                    customer
                   }
                 })
               })
