@@ -35,7 +35,7 @@ exports.post = ({ appSdk }, req, res) => {
       /* DO YOUR CUSTOM STUFF HERE */
       const { resource } = trigger
       if ((resource === 'orders' || resource === 'carts') && trigger.action !== 'delete') {
-        const resourceId = trigger.resource_id
+        const resourceId = trigger.resource_id || trigger.inserted_id
         if (resourceId) {
           const url = appData.ni_webhook_uri
           console.log(`Trigger for Store #${storeId} ${resourceId} => ${url}`)
