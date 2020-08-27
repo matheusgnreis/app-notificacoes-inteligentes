@@ -75,7 +75,7 @@ const app = {
       // 'DELETE',        // Delete categories
     ],
     customers: [
-      // 'GET',           // List/read customers
+      'GET',           // List/read customers
       // 'POST',          // Create customers
       // 'PATCH',         // Edit customers
       // 'PUT',           // Overwrite customers
@@ -89,7 +89,7 @@ const app = {
       // 'DELETE',        // Delete orders
     ],
     carts: [
-      // 'GET',           // List all carts (no auth needed to read specific cart only)
+      'GET',           // List all carts (no auth needed to read specific cart only)
       // 'POST',          // Create carts
       // 'PATCH',         // Edit carts
       // 'PUT',           // Overwrite carts
@@ -180,6 +180,13 @@ procedures.push({
       resource: 'orders',
       field: 'fulfillment_status',
     },
+    
+    // Receive notifications when cart is created with customer:
+    {
+      resource: 'carts',
+      action: 'create',
+      field: 'customers',
+    },
 
     /* Receive notifications when products/variations stock quantity changes:
     {
@@ -190,12 +197,6 @@ procedures.push({
       resource: 'products',
       subresource: 'variations',
       field: 'quantity'
-    },
-
-    // Receive notifications when cart is edited:
-    {
-      resource: 'carts',
-      action: 'change',
     },
 
     // Receive notifications when customer is deleted:
