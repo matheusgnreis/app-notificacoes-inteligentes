@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "",
-    "short_description": "",
-    "category": "tools"
+    "title": "Notificações Inteligentes",
+    "short_description": "Automações via WhatsApp para abandonos de carrinho, boletos e notificações de pedidos",
+    "category": "customer-service"
   }
 }
