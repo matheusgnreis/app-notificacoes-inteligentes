@@ -42,6 +42,15 @@
         "description": "Endpoint para webhooks da sua conta Notificações Inteligentes"
       },
       "hide": true
+    },
+    "cart_delay": {
+      "schema": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 600,
+        "title": "Delay em minutos para enviar notificação de carrinho abandonado"
+      },
+      "hide": true
     }
   },
   "auth_callback_uri": "https://us-central1-ecom-notificacoes-inteligentes.cloudfunctions.net/app/ecom/auth-callback",
