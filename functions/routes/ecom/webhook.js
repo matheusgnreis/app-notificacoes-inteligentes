@@ -44,10 +44,20 @@ exports.post = ({ appSdk }, req, res) => {
               .then(async ({ response }) => {
                 let customer
                 if (resource === 'carts') {
-                  const { customers } = response.data
-                  if (customers && customers[0]) {
-                    const { response } = await appSdk.apiRequest(storeId, `customers/${customers[0]}.json`)
-                    customer = response.data
+                  const cart = response.data
+                  if (cart.available && !cart.completed) {
+                    const abandonedCartDelay = (appData.cart_delay || 15) * 1000 * 60
+                    if (Date.now() - new Date(cart.created_at).getTime() >= abandonedCartDelay) {
+                      const { customers } = cart
+                      if (customers && customers[0]) {
+                        const { response } = await appSdk.apiRequest(storeId, `customers/${customers[0]}.json`)
+                        customer = response.data
+                      }
+                    } else {
+                      return res.sendStatus(501)
+                    }
+                  } else {
+                    return res.sendStatus(204)
                   }
                 }
                 console.log(`> Sending ${resource} notification`)
