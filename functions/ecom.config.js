@@ -153,6 +153,7 @@ const app = {
         type: 'integer',
         minimum: 1,
         maximum: 600,
+        title: 'Tempo para carrinho abandonado',
         title: 'Delay em minutos para enviar notificação de carrinho abandonado'
       },
       hide: true
