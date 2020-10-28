@@ -147,6 +147,15 @@ const app = {
         description: 'Endpoint para webhooks da sua conta Notificações Inteligentes'
       },
       hide: true
+    },
+    cart_delay: {
+      schema: {
+        type: 'integer',
+        minimum: 1,
+        maximum: 600,
+        title: 'Delay em minutos para enviar notificação de carrinho abandonado'
+      },
+      hide: true
     }
   }
 }
@@ -184,7 +193,6 @@ procedures.push({
     // Receive notifications when cart is created with customer:
     {
       resource: 'carts',
-      action: 'create',
       field: 'customers',
     },
 
