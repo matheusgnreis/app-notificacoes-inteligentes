@@ -40,7 +40,7 @@ exports.post = ({ appSdk }, req, res) => {
           const url = appData.ni_webhook_uri
           console.log(`Trigger for Store #${storeId} ${resourceId} => ${url}`)
           if (url) {
-            appSdk.apiRequest(storeId, `${resource}/${resourceId}.json`)
+            return appSdk.apiRequest(storeId, `${resource}/${resourceId}.json`)
               .then(async ({ response }) => {
                 let customer
                 if (resource === 'carts') {
@@ -74,18 +74,28 @@ exports.post = ({ appSdk }, req, res) => {
               })
               .then(({ status }) => console.log(`> ${status}`))
               .catch(console.error)
+              .finally(() => {
+                if (!res.headersSent) {
+                  // all done
+                  res.send(ECHO_SUCCESS)
+                }
+              })
           }
         }
       }
-
-      // all done
-      res.send(ECHO_SUCCESS)
+      res.sendStatus(202)
     })
 
     .catch(err => {
       if (err.name === SKIP_TRIGGER_NAME) {
         // trigger ignored by app configuration
         res.send(ECHO_SKIP)
+      } else if (err.appWithoutAuth === true) {
+        const msg = `Webhook for ${storeId} unhandled without authentication found`
+        const error = new Error(msg)
+        error.trigger = JSON.stringify(trigger)
+        console.error(error)
+        res.send(msg)
       } else {
         // console.error(err)
         // request to Store API with error response
