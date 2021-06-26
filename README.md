@@ -1,6 +1,6 @@
 # App Notificações Inteligentes
 
-[![Deploy](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/workflows/Deploy/badge.svg)](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/actions?workflow=Deploy) [![Call refresh tokens](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/workflows/Call%20refresh%20tokens/badge.svg)](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/actions?workflow=Call+refresh+tokens)
+[![Deploy](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/workflows/Deploy/badge.svg)](https://github.com/ecomplus-bot/app-notificacoes-inteligentes/actions?workflow=Deploy) [![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # E-Com Plus Application Starter
 
