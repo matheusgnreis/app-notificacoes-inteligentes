@@ -60,7 +60,7 @@ exports.post = ({ appSdk }, req, res) => {
                     return res.sendStatus(204)
                   }
                 }
-                if (resource === 'orders' && response.data && response.data.status === 'cancelled' && !(response.data.transactions && response.data.transactions.length)) {
+                if (resource === 'orders' && response.data.status === 'cancelled' && !(response.data.transactions && response.data.transactions.length)) {
                   response.data.financial_status = {
                     current = 'voided'
                   }
