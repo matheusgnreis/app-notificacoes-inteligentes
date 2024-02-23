@@ -64,7 +64,11 @@ exports.post = ({ appSdk }, req, res) => {
                   response.data.financial_status = {
                     current = 'voided'
                   }
-                } else if (resource === 'orders' && trigger.fields.includes('status')) {
+                } else if (
+                  resource === 'orders' &&
+                  !trigger.fields.includes('financial_status') &&
+                  !trigger.fields.includes('fulfillment_status')
+                ) {
                   return res.sendStatus(204)
                 }
                 console.log(`> Sending ${resource} notification`)
